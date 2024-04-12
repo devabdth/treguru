@@ -9,6 +9,8 @@ type ButtonProps = {
   variant: string;
   onClick: VoidFunction;
   customClassesStyle?: string;
+  iconWidth?: number;
+  iconHeight?: number;
 };
 const MainButton = ({
   type,
@@ -18,6 +20,7 @@ const MainButton = ({
   onClick,
   customClassesStyle,
   cursor,
+  iconWidth, iconHeight
 }: ButtonProps) => {
   return (
     <button
@@ -27,9 +30,9 @@ const MainButton = ({
       type={type}
       className={`${
         cursor ?? "cursor-pointer"
-      } flexCenter px-2 py-1 gap-2 rounded-xl ${variant} ${customClassesStyle ?? ""}`}
+      } flexCenter ${!(variant === "icon-only") && "px-2 py-1 gap-2"} rounded-xl ${variant} ${customClassesStyle ?? ""}`}
     >
-      {icon && <Image src={icon} alt={title} width={24} height={25}></Image>}
+      {icon && <Image src={icon} alt={title} width={iconWidth ?? 24} height={iconHeight??24}></Image>}
       <label
         className={`${cursor ?? "cursor-pointer"} bold-16 whitespace-nowrap`}
       >
