@@ -1,5 +1,3 @@
-import react from "next/react";
-import Link from "next/link";
 import consts, { ReelProps } from "@/prefs/consts";
 import ReactPlayer from "react-player";
 import { useState } from "react";
