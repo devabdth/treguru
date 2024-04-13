@@ -1,11 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, HTMLInputTypeAttribute } from "react";
 import Image from "next/image";
 import {
   DefaultLineFormField,
   DefaultMultiLineFormField,
   MainButton,
 } from "@/components/globals";
+import TicketsRequestHandler, { CreateTicketProps } from "@/utils/ticketsReqeustsHandlers";
 
 const HeroSection = () => {
   const [fname, setFname] = useState("");
@@ -53,15 +54,15 @@ const HeroSection = () => {
           <form className="w-full h-full flex flex-col items-center justify-center gap-2">
             <div className="w-full flex flex-row gap-[1vw] items-center justify-center">
               <DefaultLineFormField
-                id="first-name"
+                id="first-name" value={fname}
                 placeholder="First Name"
-                type="name"
+                type="name" 
                 onChanged={(value) => {
                   setFname(value);
                 }}
               />
               <DefaultLineFormField
-                id="last-name"
+                id="last-name" value={lname}
                 placeholder="Last Name"
                 type="name"
                 onChanged={(value) => {
@@ -70,15 +71,15 @@ const HeroSection = () => {
               />
             </div>
             <DefaultLineFormField
-              id="email"
+              id="email" value={email}
               placeholder="Email Address"
-              type="email"
+              type="email" 
               onChanged={(value) => {
                 setEmail(value);
               }}
             />
             <DefaultLineFormField
-              id="phone"
+              id="phone" value={phone}
               placeholder="Phone Number"
               type="phone"
               onChanged={(value) => {
@@ -87,7 +88,7 @@ const HeroSection = () => {
             />
             <DefaultMultiLineFormField
               id="message"
-              placeholder="Message"
+              placeholder="Message" value={message}
               onChanged={(value) => {
                 setMessage(value);
               }}
@@ -98,15 +99,30 @@ const HeroSection = () => {
               type="button"
               title="Submit"
               variant="btn-accent"
-              onClick={() => {
-                console.log({
-                  fname,
-                  lname,
-                  email,
-                  phone,
-                  message,
+              onClick={async() => {
+                const formValidationResult= await TicketsRequestHandler.validateForm({
+                    fnameRef: document.querySelector("#first-name")!, lnameRef: document.querySelector("#last-name")!,
+                    phoneRef: document.querySelector("#phone")!, emailRef: document.querySelector("#email")!,
+                    messageRef: document.querySelector("#message")!,
+                    setCurrentMessage: (message: string) => { setCurrentStatus(message); }
+
                 });
-                setCurrentStatus("Hello There, This is a status!");
+                if (!formValidationResult) return;
+                const payload: CreateTicketProps= {
+                  fName: fname,
+                  lName: lname,
+                  email: email,
+                  phone: phone,
+                  message: message,
+                };
+                const result= await TicketsRequestHandler.createTicket(payload);
+                console.log(result);
+                if (result.status === 1) {
+                    setFname(""); setEmail("");
+                    setLname(""); setPhone("");
+                    setMessage(""); setCurrentStatus("");
+                }
+                setCurrentStatus(result.message);
               }}
             />
             <p className="regular-12 text-gray-30">{currentStatus}</p>
