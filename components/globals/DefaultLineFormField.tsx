@@ -7,6 +7,7 @@ interface onChangeCallback {
 }
 type LineFieldProps = {
   id: string;
+  value: string;
   placeholder: string;
   type: "name" | "email" | "phone";
   onChanged?: onChangeCallback;
@@ -17,6 +18,7 @@ const DefaultLineFormField = (props: LineFieldProps) => {
   return (
     <input
       ref={ref}
+      value={props.value}
       className="w-full h-4 rounded-lg px-4 py-6 btn-blur regular-12 focus:border-none active:border-none focus:outline-none active:outline-none"
       placeholder={props.placeholder}
       id={props.id}
