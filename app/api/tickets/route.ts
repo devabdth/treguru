@@ -23,7 +23,7 @@ export const POST= async (req: NextRequest, _: NextResponse) => {
 
         const ticketRes= await dbHelper.tickets!.createTicket(body!);
 
-        return NextResponse.json((ticketRes ? 201 : 401), {
+        return NextResponse.json((200), {
             headers: {
                 "Content-Type": "application/json"
             }
