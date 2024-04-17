@@ -1,6 +1,6 @@
 "use client";
 import React, { FC, useState, useEffect, useRef } from "react";
-import { PortfolioIndustryProps, PortfolioProjectProps } from "@/prefs/consts";
+import { PortfolioIndustryProps } from "@/prefs/consts";
 import Image from "next/image";
 import { MainButton } from "../globals";
 import { IProject } from "@/models/project";
@@ -11,12 +11,12 @@ type PortfolioSectionProps = {
   industry: PortfolioIndustryProps;
   leftTitle: boolean;
   projects: Array<IProject>,
-  openModelCallback(project: PortfolioProjectProps): void;
+  openModelCallback(project: IProject): void;
 };
 
 type ProjectCardProps= {
     project: IProject;
-    viewCallback(project: PortfolioProjectProps): void;
+    viewCallback(project: IProject): void;
 }
 
 const ProjectCard= ({project, viewCallback}: ProjectCardProps)=> {
