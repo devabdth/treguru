@@ -1,15 +1,34 @@
+import { IProject } from "@/models/project";
 import PortfolioBody from "./PortfolioBody";
 
 import { DEFAULT_DESCRIPTION, DEFAULT_KEYWORDS } from "@/prefs/seo"
 import type { Metadata } from "next";
+import PortfolioSection from "@/components/portfolio/PortfolioSection";
+import * as dotenv from "dotenv";
+dotenv.config();
+
+
+
 export const metadata: Metadata = {
     title: 'TreGuru - Portfolio',
     keywords: DEFAULT_KEYWORDS,
     description: DEFAULT_DESCRIPTION,
 };
 
-const Portfolio= () => {
-    return (<PortfolioBody/>)
+const getData = async () => {
+    const headers: Headers= new Headers();
+    headers.set("Authorization", process.env.API_KEY ?? "")
+    const res =await fetch(`${process.env.NEXT_PUBLIC_HOST!}/api/projects/`, {
+        method: "GET", headers: headers
+    });
+    const data= JSON.parse(await res.json());
+    return data["projects"] ?? new Array<IProject>;
+}
+
+
+const Portfolio= async () => {
+    const projects= await getData();
+    return (<PortfolioBody projects={projects}/>)
 }
 
 export default Portfolio
