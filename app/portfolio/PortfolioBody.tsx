@@ -7,9 +7,10 @@ import Consts, { ReelProps } from "@/prefs/consts";
 import { useState } from "react";
 import consts, { PortfolioProjectProps } from "@/prefs/consts";
 import ReelModel from "@/components/portfolio/ReelModel";
+import { IProject } from "@/models/project";
 
-
-const PortfolioBody = () => {
+type PortfolioBodyProps = {projects: Array<IProject>}
+const PortfolioBody = (props: PortfolioBodyProps) => {
     const [showModel, setShowModel]= useState(false);
     const [projectState, setProjectState]= useState<{project?: PortfolioProjectProps}>();
     const [showReelsModel, setShowReelsModel]= useState(false);
@@ -22,8 +23,10 @@ const PortfolioBody = () => {
           setReelState({reel: reel});
           setShowReelsModel(true);
         }} />
-      {Consts.PORTFOLIO_DATA.map((project, i) => (
-        <PortfolioSection industry={project} key={i} leftTitle={i % 2 == 0}
+      {Consts.PORTFOLIO_DATA.map((industry, i) => (
+        <PortfolioSection industry={industry}
+            projects={(props.projects??[]).filter((proj: IProject) => industry.projects.includes(proj.projectId))}
+            key={i} leftTitle={i % 2 == 0}
             openModelCallback={(project)=> { setProjectState(prevState => ({...prevState, project})); setShowModel(true);}}
         />
       ))}
@@ -42,5 +45,4 @@ const PortfolioBody = () => {
     </>
   );
 };
-
 export default PortfolioBody;
