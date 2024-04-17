@@ -26,13 +26,13 @@ const HeroSection = () => {
           <div className="flex flex-row bg-gray-gradient rounded-lg items-center justify-center">
             <Image
               className="w-8"
-              src="/discount.svg"
+              src="/innovation.svg"
               alt="Discount Icon"
               width={100}
               height={100}
             ></Image>
             <p className="px-2 py-1 uppercase text-white whitespace-nowrap regular-12">
-              20% DISCOUNT FOR FIRST CONTRACT MARKING-DOWN
+              Craft Code. Captivate Crowds.
             </p>
           </div>
           <h1 className="text-white bold-52 lg:bold-64 text-justify">
@@ -57,10 +57,8 @@ const HeroSection = () => {
             <span className="text-gradient bold-52 lg:bold-64">!</span>
           </h1>
           <p className="text-gray-20 regular-12 text-justify">
-            Our team of experts uses a methodology to identify the credit cards
-            most likely to fit your needs. We examine annual percentage rates,
-            annual fees.
-          </p>
+            Unleash your brand's potential with our software development & social media marketing.  We engineer custom solutions & craft engaging strategies to ignite brand awareness, drive results & transform your vision into reality.
+        </p>
         </div>
       </div>
 

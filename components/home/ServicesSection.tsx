@@ -8,9 +8,8 @@ type ServiceCardProps = { service: ServiceProps };
 const ServiceCard: FC<ServiceCardProps> = (props) => {
   return (
     <div
-      className="w-full lg:max-w-[30%] backdrop-blur-xl third-black-gradient
-    h-max-[40vw] h-[25vw] lg:h-[6vw] lg:h-max-[30vw] rounded-3xl
-     overflow-hidden px-8 py-4 lg:px-8 lg:py-4
+      className="w-full lg:max-w-[30%] backdrop-blur-xl h-max-[40vw] h-[25vw] lg:h-[6vw] lg:h-max-[30vw] rounded-3xl
+     overflow-hidden px-8 py-4 lg:px-8 lg:py-4 bg-gray-200/15 backdrop-blur-xl
      flex flex-row items-center justify-start gap-4"
     >
       <div className="lg:max-w-[6vw] max-w-[20vw] aspect-square h-full flex flex-col items-center justify-center">
@@ -34,7 +33,7 @@ const ServiceCard: FC<ServiceCardProps> = (props) => {
   );
 };
 
-const TestmonialsSection = () => {
+const ServicesSection = () => {
   return (
     <section className="relative min-h-[20vw] -mt-[80vw] lg:-mt-[30vw] lg:min-h-[30vw]">
       <div className="w-full h-full relative min-h-[100vw] lg:min-h-[30vw]">
@@ -86,13 +85,12 @@ const TestmonialsSection = () => {
       <div className="w-full h-full flex flex-col min-h-[100vw] lg:min-h-[30vw] gap-8">
         <div className="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-between px-4 pl-2 lg:px-28 lg:py-10">
           <h3 className="capitalize text-white bold-48">
-            What people are <br />
-            <span className="text-gradient">saying</span> about us!
+            Powerful Services for <br />
+            <span className="text-gradient">Software & Social Media</span>!
           </h3>
           <p className="lg:max-w-[40%] max-w-[85%] text-gray-20 lg:regular-16 regular-16">
-            Everything you need to accept card payments and grow your business
-            anywhere on the planet.
-          </p>
+            Transform your brand. We engineer custom software solutions & craft data-driven social media strategies to elevate your business.
+        </p>
         </div>
         <div className="flex flex-col lg:flex-row lg:flex-wrap w-full h-full gap-4 px-4 lg:px-28 items-center justify-between">
           {consts.SERVICES.map((service, i) => (
@@ -104,4 +102,4 @@ const TestmonialsSection = () => {
   );
 };
 
-export default TestmonialsSection;
+export default ServicesSection;

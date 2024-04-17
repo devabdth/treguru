@@ -221,6 +221,10 @@ footer .footer-column#column-two #tabs {
   );
 }
 
+.conic-gradient {
+ background: conic-gradient(from 225deg,#ffc876,#79fff7,#9f53ff,#ff98e2,#ffc876);
+}
+
 .slick-slider > div {
   height: 100%;
 }
@@ -309,6 +313,9 @@ footer .footer-column#column-two #tabs {
 }
 
 @layer utilities {
+    .bg-conic-gradient {
+        @apply conic-gradient
+    }
     .drawer-z {
         z-index: 1000;
     }

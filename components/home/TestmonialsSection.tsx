@@ -90,9 +90,8 @@ const TestmonialsSection = () => {
             <span className="text-gradient">saying</span> about us!
           </h3>
           <p className="lg:max-w-[40%] max-w-[85%] text-gray-20 lg:regular-16 regular-16">
-            Everything you need to accept card payments and grow your business
-            anywhere on the planet.
-          </p>
+            Discover the difference we make! Read real reviews from satisfied clients across various industries. See how our expertise empowers businesses like yours to achieve remarkable results.
+        </p>
         </div>
         <div className="flex flex-col lg:flex-row w-full h-full gap-4 px-4 lg:px-28 items-center justify-between">
           {consts.TESTMONIALS.map((testmonial, i) => (

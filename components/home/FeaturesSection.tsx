@@ -54,7 +54,7 @@ const FeaturesSection = () => {
         mt-[100vw] flex flex-col lg:flex-row-reverse items-center justify-between gap-6 lg:gap-[10vw]"
     >
       {/* Info Section */}
-      <div className="w-full lg:max-w-[70%] lg:h-full items-start justify-center gap-4 flex flex-col">
+      <div className="w-full lg:max-w-[70%] lg:h-full items-start justify-center gap-4 flex flex-col z-50">
         <h2 className="regular-72 text-white whitespace-nowrap">
           You dream,
           <br />
@@ -62,16 +62,15 @@ const FeaturesSection = () => {
           .
         </h2>
         <p className="regular-12 text-gray-20">
-          With the right credit card, you can improve your financial life by
-          building credit, earning rewards and saving money. But with hundreds
-          of credit cards on the market.
+          Embodies our 3 core values: Elite Care, Smart Pricing & Secure Solutions. We craft custom solutions & translate your vision into reality, igniting brand success.
         </p>
         <MainButton
           title="Book Meeting"
+          cursor="pointer"
+          customClassesStyle="cursor-pointer"
           onClick={() => {
-            // TODO: Open Drawer
-            console.log("Booked");
-            return;
+              window.open("/contact", "_self");
+              return;
           }}
           type="button"
           variant="btn-accent"
