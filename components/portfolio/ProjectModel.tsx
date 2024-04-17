@@ -1,10 +1,10 @@
-import { PortfolioProjectProps } from "@/prefs/consts"
 import Image from "next/image"
 import { config as envConfig } from "dotenv";
+import { IProject } from "@/models/project";
 envConfig();
 
 type ProjectModelProps= {
-    project: PortfolioProjectProps;
+    project: IProject;
     closeModelCallback: Function;
 }
 
