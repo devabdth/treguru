@@ -18,12 +18,15 @@ export const GET= async (req: NextRequest, _: NextResponse) => {
 
 export const POST= async (req: NextRequest, _: NextResponse) => {
     try {
+        const authRes= authMiddleware(req);
+        if (!authRes) return NextResponse.json(401);
+
         const body= await req.json();
         if (!body) return NextResponse.json(401, { headers: { "Content-Type": "application/json" } });
 
-        const ticketRes= await dbHelper.tickets!.createTicket(body!);
+        const ticketRes: boolean= await dbHelper.tickets!.createTicket(body!);
 
-        return NextResponse.json((200), {
+        return NextResponse.json((ticketRes? 200: 500), {
             headers: {
                 "Content-Type": "application/json"
             }
