@@ -3,19 +3,24 @@ import React, { FC, useState, useEffect, useRef } from "react";
 import { PortfolioIndustryProps, PortfolioProjectProps } from "@/prefs/consts";
 import Image from "next/image";
 import { MainButton } from "../globals";
+import { IProject } from "@/models/project";
+import { config as envConfig } from "dotenv";
+envConfig()
 
 type PortfolioSectionProps = {
   industry: PortfolioIndustryProps;
   leftTitle: boolean;
+  projects: Array<IProject>,
   openModelCallback(project: PortfolioProjectProps): void;
 };
 
 type ProjectCardProps= {
-    project: PortfolioProjectProps;
+    project: IProject;
     viewCallback(project: PortfolioProjectProps): void;
 }
 
 const ProjectCard= ({project, viewCallback}: ProjectCardProps)=> {
+    console.log(`Project Card: ${project}`);
   return (
     <div
       className="lg:h-[30vw] md:h-[30vw] h-[50vw] flex items-center justify-center
@@ -23,15 +28,15 @@ const ProjectCard= ({project, viewCallback}: ProjectCardProps)=> {
     "
     >
       <Image
-        src={project.backgroundImage}
+        src={`${process.env.NEXT_PUBLIC_HOST}/${project.backgroundImage}`}
         alt={project.title}
         width={1024}
         height={1024}
         className="w-full h-full object-cover object-center absolute top-0"
       ></Image>
-      <div className="w-full h-[30%] absolute bottom-0 bg-gradient-to-t from-gray-90/100 to-gray-90/0 flex flex-col items-start justify-end px-4 py-2">
+      <div className="w-full h-[60%] absolute bottom-0 bg-gradient-to-t from-gray-90/100 to-gray-90/0 flex flex-col items-start justify-end px-4 py-2">
         <h3 className="text-white bold-20">{project.title}</h3>
-        <p className="text-white regular-12 text-justify">{project.bio}</p>
+        <p className="text-white regular-12 text-justify">{project.bio.length > 50 ? project.bio.substring(0, 50) : project.bio}</p>
         <div className="w-full mt-[1vw] items-center justify-end flex">
           <MainButton
             title="View"
@@ -48,7 +53,7 @@ const ProjectCard= ({project, viewCallback}: ProjectCardProps)=> {
 
 
 const PortfolioSection: FC<PortfolioSectionProps> = (props) => {
-  const projectsCount = props.industry.projects.length - 1;
+  const projectsCount = props.industry.projects.length!==1?props.industry.projects.length - 1:1;
   const [displayCardsCount, setDisplayCardsCount] = useState(
     projectsCount > 4 ? 4 : projectsCount
   );
@@ -117,7 +122,7 @@ const PortfolioSection: FC<PortfolioSectionProps> = (props) => {
             className="w-full grid gird-cols-1 md:grid-cols-2 lg:grid-cols-4 
           lg:gap-y-[1vw] lg:gap-x-[2vw] gap-y-[6vw] gap-x-[4vw] lg:justify-end mb-[10vw] md:mb-[4vw] lg:mb-[2vw]"
           >
-            {props.industry.projects
+            {props.projects
               .slice(0, displayCardsCount)
               .map((project, i) => (
                 <ProjectCard project={project} key={i}

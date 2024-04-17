@@ -12,7 +12,7 @@ const ReelsSection= (props: ReelsSectionProps) => {
             <p className="text-white/75 regular-12 lg:px-12 px-6 text-center">See our latest projects come alive! Motion graphics & animation showcasing our skills.</p>
             <div className="w-full grid grid-cols-2 lg:gap-4 gap-2 lg:grid-cols-5 md:grid-cols-4 m-auto items-center lg:mt-[2vw] z-[50] mt-[3vw]">
                 {consts.REELS_DATA.map((reel, i) =>( <>
-                    <ReelCard reel={reel} key={reel.id} onCardClickListener={
+                    <ReelCard reel={reel} key={i} onCardClickListener={
                         () => {
                             props.openReelModel(reel);
                         }
