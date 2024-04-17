@@ -1,12 +1,15 @@
 import Ticket, {ITicket} from "@/models/ticket";
 export default class TicketsHelper {
-    constructor(){}
+    logger?: string;
+    constructor() {
+        this.logger= "[Projects Database Helper]";
+    }
 
     async getAllTickets(): Promise<Array<ITicket> | undefined> {
         try {
             return await Ticket.find({});
         } catch (e) {
-            console.log(e);
+            console.log(`${this.logger}: ${e}`);
             return undefined;
         }
 
@@ -19,7 +22,7 @@ export default class TicketsHelper {
             return true;
 
         } catch (e) {
-            console.log(e);
+            console.log(`${this.logger}: ${e}`);
             return false;
         }
     }
