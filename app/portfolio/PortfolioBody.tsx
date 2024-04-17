@@ -5,14 +5,14 @@ import ProjectModel from "@/components/portfolio/ProjectModel"
 import ReelsSection from "@/components/portfolio/ReelsSection"
 import Consts, { ReelProps } from "@/prefs/consts";
 import { useState } from "react";
-import consts, { PortfolioProjectProps } from "@/prefs/consts";
+import consts from "@/prefs/consts";
 import ReelModel from "@/components/portfolio/ReelModel";
 import { IProject } from "@/models/project";
 
 type PortfolioBodyProps = {projects: Array<IProject>}
 const PortfolioBody = (props: PortfolioBodyProps) => {
     const [showModel, setShowModel]= useState(false);
-    const [projectState, setProjectState]= useState<{project?: PortfolioProjectProps}>();
+    const [projectState, setProjectState]= useState<{project?: IProject}>();
     const [showReelsModel, setShowReelsModel]= useState(false);
     const [reelState, setReelState]= useState<{reel?: ReelProps}>();
 
