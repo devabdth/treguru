@@ -16,7 +16,7 @@ const ProjectSchema= new Schema<IProject>({
     projectId: {type: String, required: true},
     backgroundImage: {type: String, required: true},
     portfolioSectionId: {type: String, required: true},
-    projectDisplayImages: {type: Array<string>, required: true},
+    projectDisplayImages: {type: [String], required: true},
 });
 
 export type {IProject, ProjectSchema}

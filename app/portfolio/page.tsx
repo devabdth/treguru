@@ -1,6 +1,6 @@
 import { IProject } from "@/models/project";
 import PortfolioBody from "./PortfolioBody";
-
+import DatabaseHelper from "@/database";
 import { DEFAULT_DESCRIPTION, DEFAULT_KEYWORDS } from "@/prefs/seo"
 import type { Metadata } from "next";
 import PortfolioSection from "@/components/portfolio/PortfolioSection";
@@ -16,13 +16,9 @@ export const metadata: Metadata = {
 };
 
 const getData = async () => {
-    const headers: Headers= new Headers();
-    headers.set("Authorization", process.env.API_KEY ?? "")
-    const res =await fetch(`${process.env.NEXT_PUBLIC_HOST!}/api/projects/`, {
-        method: "GET", headers: headers
-    });
-    const data= JSON.parse(await res.json());
-    return data["projects"] ?? new Array<IProject>;
+    const database= new DatabaseHelper();
+    return await database.projects.getAllProjects();
+
 }
 
 
