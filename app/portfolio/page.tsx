@@ -16,8 +16,9 @@ export const metadata: Metadata = {
 };
 
 const getData = async () => {
-    const database= new DatabaseHelper();
-    return await database.projects.getAllProjects();
+    const dbHelper: DatabaseHelper= new DatabaseHelper();
+    const projects: Array<IProject> | undefined = await dbHelper.projects!.getAllProjects();
+    return projects;
 
 }
 
