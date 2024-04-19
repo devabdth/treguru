@@ -1,9 +1,8 @@
 import { IProject } from "@/models/project";
 import PortfolioBody from "./PortfolioBody";
-import DatabaseHelper from "@/database";
+
 import { DEFAULT_DESCRIPTION, DEFAULT_KEYWORDS } from "@/prefs/seo"
 import type { Metadata } from "next";
-import PortfolioSection from "@/components/portfolio/PortfolioSection";
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -16,11 +15,14 @@ export const metadata: Metadata = {
 };
 
 const getData = async () => {
-    const dbHelper: DatabaseHelper= new DatabaseHelper();
-    const projects: Array<IProject> | undefined = await dbHelper.projects!.getAllProjects();
-    console.log(projects)
-    return projects??[];
-
+    const headers: Headers= new Headers();
+    headers.set("Authorization", process.env.API_KEY ?? "")
+    const res =await fetch(`${process.env.NEXT_PUBLIC_HOST!}/api/projects/`, {
+        method: "GET", headers: headers,
+        cache: "no-store"
+    });
+    const data= JSON.parse(await res.json());
+    return data["projects"] ?? new Array<IProject>;
 }
 
 
