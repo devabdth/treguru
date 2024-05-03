@@ -21,5 +21,5 @@ const ProjectSchema= new Schema<IProject>({
 
 export type {IProject, ProjectSchema}
 
-const Ticket= models.Project || model<IProject>('Project', ProjectSchema);
-export default Ticket;
+const Project= models.Project || model<IProject>('Project', ProjectSchema);
+export default Project;
