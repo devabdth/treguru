@@ -1,3 +1,3 @@
-export const DEFAULT_DESCRIPTION= "";
+export const DEFAULT_DESCRIPTION= "Unlock the power of digital innovation with TreGurus, your premier Software House & Marketing Agency in the Egyptian market. Our expert team combines cutting-edge technology with unparalleled marketing savvy to elevate your brand above the competition. From trend-setting software solutions to guru-level marketing strategies, we're your partners in success. Discover how TreGurus can transform your business today!";
 
-export const DEFAULT_KEYWORDS= ""
+export const DEFAULT_KEYWORDS= "software house, marketing agency, Egypt, trends, gurus, software development, media production, web development, mobile development, graphic design, UI, UX, business development, business consulting, social media marketing, social media management, creativity, influence"
