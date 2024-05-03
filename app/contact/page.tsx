@@ -5,7 +5,16 @@ import fetchSecurityData from "@/utils/fetchSecurityData";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
     title: 'TreGuru - Contact Us',
-    keywords: DEFAULT_KEYWORDS,
+     icons: [
+        {
+            rel: "icon",
+            type: "image/ico",
+            sizes: "64x64",
+            url: "../favicon.ico"
+        },
+    ],
+
+   keywords: DEFAULT_KEYWORDS,
     description: DEFAULT_DESCRIPTION,
 };
 

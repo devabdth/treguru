@@ -4,7 +4,16 @@ import { DEFAULT_KEYWORDS, DEFAULT_DESCRIPTION } from "@/prefs/seo";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
     title: 'TreGuru - About',
-    keywords: DEFAULT_KEYWORDS,
+     icons: [
+        {
+            rel: "icon",
+            type: "image/ico",
+            sizes: "64x64",
+            url: "../favicon.ico"
+        },
+    ],
+
+   keywords: DEFAULT_KEYWORDS,
     description: DEFAULT_DESCRIPTION,
 };
 

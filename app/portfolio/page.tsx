@@ -10,7 +10,16 @@ dotenv.config();
 
 export const metadata: Metadata = {
     title: 'TreGuru - Portfolio',
-    keywords: DEFAULT_KEYWORDS,
+     icons: [
+        {
+            rel: "icon",
+            type: "image/ico",
+            sizes: "64x64",
+            url: "../favicon.ico"
+        },
+    ],
+
+   keywords: DEFAULT_KEYWORDS,
     description: DEFAULT_DESCRIPTION,
 };
 

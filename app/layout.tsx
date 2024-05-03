@@ -1,5 +1,7 @@
 import "./globals.css";
 import { DefaultBody } from "../components/globals";
+import { Metadata } from "next";
+
 export default function RootLayout({
   children,
 }: Readonly<{

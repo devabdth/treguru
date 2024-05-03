@@ -10,7 +10,16 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
     title: 'TreGuru - Home',
     keywords: DEFAULT_KEYWORDS,
-    description: DEFAULT_DESCRIPTION,
+    icons: [
+        {
+            rel: "icon",
+            type: "image/ico",
+            sizes: "64x64",
+            url: "./favicon.ico"
+        },
+    ],
+
+   description: DEFAULT_DESCRIPTION,
 };
 
 export default function Home() {
