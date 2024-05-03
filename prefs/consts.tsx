@@ -177,7 +177,10 @@ const PORTFOLIO_DATA: Array<PortfolioIndustryProps> = [
         bio: "Explore websites that work. Our portfolio showcases impactful designs built to elevate brands and drive results. We craft user-friendly experiences that convert.",
         neonsHue: "hue-rotate-90",
         projects: [
-            "tg-240001"
+            "tg-240001",
+            "tg-240002",
+            "tg-240003"
+
         ],
     },
 ];
