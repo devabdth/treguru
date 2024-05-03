@@ -8,18 +8,22 @@ import { useState } from "react";
 import consts from "@/prefs/consts";
 import ReelModel from "@/components/portfolio/ReelModel";
 import { IProject } from "@/models/project";
+import { IReel } from "@/models/reel";
 
-type PortfolioBodyProps = {projects: Array<IProject>}
+type PortfolioBodyProps = {
+    projects: Array<IProject>;
+    reels: Array<IReel>;
+}
 const PortfolioBody = (props: PortfolioBodyProps) => {
     const [showModel, setShowModel]= useState(false);
     const [projectState, setProjectState]= useState<{project?: IProject}>();
     const [showReelsModel, setShowReelsModel]= useState(false);
-    const [reelState, setReelState]= useState<{reel?: ReelProps}>();
+    const [reelState, setReelState]= useState<{reel?: IReel}>();
 
   return (
     <>
       <HomeSection />
-      <ReelsSection openReelModel={(reel) => {
+      <ReelsSection reels={props.reels} openReelModel={(reel) => {
           setReelState({reel: reel});
           setShowReelsModel(true);
         }} />
@@ -31,7 +35,8 @@ const PortfolioBody = (props: PortfolioBodyProps) => {
         />
       ))}
       {showReelsModel && <ReelModel 
-        reelIndex={consts.REELS_DATA.indexOf(reelState!.reel!)}  
+        reels={props.reels}
+        reelIndex={props.reels.indexOf(reelState!.reel!)}  
         closeModelCallback={()=> { setShowReelsModel(false); setReelState({reel: undefined})}}
         reelChangedListener={(newReel) => {
             setReelState({reel: newReel});

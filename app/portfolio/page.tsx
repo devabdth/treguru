@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description: DEFAULT_DESCRIPTION,
 };
 
-const getData = async () => {
+const getProjectsData = async () => {
     const headers: Headers= new Headers();
     headers.set("Authorization", process.env.API_KEY ?? "")
     const res =await fetch(`${process.env.NEXT_PUBLIC_HOST!}/api/projects/`, {
@@ -26,9 +26,23 @@ const getData = async () => {
 }
 
 
+const getReelsData = async () => {
+    const headers: Headers= new Headers();
+    headers.set("Authorization", process.env.API_KEY ?? "")
+    const res =await fetch(`${process.env.NEXT_PUBLIC_HOST!}/api/reels/`, {
+        method: "GET", headers: headers,
+        cache: "no-store"
+    });
+    const data= JSON.parse(await res.json());
+    return data["reels"] ?? new Array<IProject>;
+}
+
+
+
 const Portfolio= async () => {
-    const projects= await getData();
-    return (<PortfolioBody projects={projects}/>)
+    const projects= await getProjectsData();
+    const reels= await getReelsData();
+    return (<PortfolioBody projects={projects} reels={reels}/>)
 }
 
 export default Portfolio
