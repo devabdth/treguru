@@ -30,8 +30,7 @@ const Drawer= (props:DrawerProps) => {
         </div>
         <div className="w-full gap-4 flex flex-col items-start justify-start px-6">
         {Consts.NAV_TABS.map((tab, i) => (
-          <div onClick={() => { props.closeCallback(); }}><Link
-            key={i}
+          <div key={i} onClick={() => { props.closeCallback(); }}><Link
             href={tab.href}
             className={`text-gray-30 transition-all hover:bold-16 ${
               pathname === tab.href
