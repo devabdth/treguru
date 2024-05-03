@@ -1,11 +1,10 @@
 "use client"
 import { useState } from "react";
 import { DefaultNavBar, DefaultFooter, Drawer } from "./";
-
-
 const DefaultBody= ({ children }: Readonly<{ children: React.ReactNode; }>) => {
     const [isDrawerOpened, setIsDrawerOpened]= useState(false);
    return (<body>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <DefaultNavBar openDrawerCallback={()=> { setIsDrawerOpened(true); }} />
         <main>{children}</main>
         <DefaultFooter />
