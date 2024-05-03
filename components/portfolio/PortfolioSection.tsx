@@ -20,7 +20,6 @@ type ProjectCardProps= {
 }
 
 const ProjectCard= ({project, viewCallback}: ProjectCardProps)=> {
-    console.log(`Project Card: ${project}`);
   return (
     <div
       className="lg:h-[30vw] md:h-[30vw] h-[50vw] flex items-center justify-center
@@ -34,9 +33,9 @@ const ProjectCard= ({project, viewCallback}: ProjectCardProps)=> {
         height={1024}
         className="w-full h-full object-cover object-center absolute top-0"
       ></Image>
-      <div className="w-full h-[60%] absolute bottom-0 bg-gradient-to-t from-gray-90/100 to-gray-90/0 flex flex-col items-start justify-end px-4 py-2">
+      <div className="w-full h-[80%] absolute bottom-0 bg-gradient-to-t from-black/100 to-gray-90/0 flex flex-col items-start justify-end px-4 py-2">
         <h3 className="text-white bold-20">{project.title}</h3>
-        <p className="text-white regular-12 text-justify">{project.bio.length > 50 ? project.bio.substring(0, 50) : project.bio}</p>
+        <p className="text-white regular-12 text-justify">{project.bio.length > 115 ? `${project.bio.substring(0, 115)}...` : project.bio}</p>
         <div className="w-full mt-[1vw] items-center justify-end flex">
           <MainButton
             title="View"
@@ -53,7 +52,7 @@ const ProjectCard= ({project, viewCallback}: ProjectCardProps)=> {
 
 
 const PortfolioSection: FC<PortfolioSectionProps> = (props) => {
-  const projectsCount = props.industry.projects.length!==1?props.industry.projects.length - 1:1;
+  const projectsCount = props.projects.length;
   const [displayCardsCount, setDisplayCardsCount] = useState(
     projectsCount > 4 ? 4 : projectsCount
   );

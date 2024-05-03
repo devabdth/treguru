@@ -1,10 +1,12 @@
 import Image from "next/image"
 import React from "react"
-import { ReelProps } from "@/prefs/consts"
 import { MainButton } from "../globals"
+import dotenv from "dotenv";
+import {IReel} from "@/models/reel";
+dotenv.config();
 
 type ReelCardProps= {
-    reel: ReelProps;
+    reel: IReel;
     onCardClickListener: () => void;
 
 }
@@ -13,7 +15,7 @@ const ReelCard= (props: ReelCardProps)=> {
     return (
         <div className="min-w-[8vw] w-full lg:aspect-[9/13] md:aspect-[9/14] aspect-[9/15] rounded-xl overflow-hidden relative">
             <Image
-                src={props.reel.thumbnail}
+                src={process.env.NEXT_PUBLIC_HOST + props.reel.thumbnail}
                 width={1080} height={1920}
                 alt={props.reel.bio}
                 className="absolute w-full h-full top-0 object-cover object-center"

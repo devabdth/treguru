@@ -2,11 +2,13 @@ import consts, { ReelProps } from "@/prefs/consts";
 import ReactPlayer from "react-player";
 import { useState } from "react";
 import { MainButton } from "../globals";
+import { IReel } from "@/models/reel";
 
 type ReelModelProps= {
     reelIndex: number;
     closeModelCallback: Function;
-    reelChangedListener: (reel: ReelProps) => void;
+    reelChangedListener: (reel: IReel) => void;
+    reels: Array<IReel>;
 }
 
 const ReelModel= (props: ReelModelProps)=> {
@@ -14,8 +16,8 @@ const ReelModel= (props: ReelModelProps)=> {
     const [showControllers, setShowControllers]= useState(false);
     const [isMuted, setIsMuted]= useState(true);
     const [currentReelIndex, setCurrentReelIndex]= useState(props.reelIndex)
-    const [reel, setReel]= useState<ReelProps>(consts.REELS_DATA[props.reelIndex]);
-    const allReelsCount= consts.REELS_DATA.length;
+    const [reel, setReel]= useState<IReel>(props.reels[props.reelIndex]);
+    const allReelsCount= props.reels.length;
     return (
         <div className="inset-0 fixed w-screen h-screen bg-black/50 backdrop-blur-xl z-[200] flex flex-row items-center justify-center">
             <MainButton 
@@ -24,8 +26,8 @@ const ReelModel= (props: ReelModelProps)=> {
                 icon="/chevron-right.svg" title="" onClick={() => {
                     const newReelIndex= currentReelIndex-1;
                     setCurrentReelIndex(newReelIndex);
-                    setReel(consts.REELS_DATA[newReelIndex]);
-                    props.reelChangedListener(consts.REELS_DATA[newReelIndex])
+                    setReel(props.reels[newReelIndex]);
+                    props.reelChangedListener(props.reels[newReelIndex])
                     }}
             />
             <div className="lg:w-[60vw] w-[90%] aspect-[10/16] max-h-[90%] min-h[85%] flex flex-col items-start justify-center">
@@ -69,8 +71,8 @@ const ReelModel= (props: ReelModelProps)=> {
                 icon="/chevron-left.svg" title="" onClick={() => {
                     const newReelIndex= currentReelIndex+1;
                     setCurrentReelIndex(newReelIndex);
-                    setReel(consts.REELS_DATA[newReelIndex]);
-                    props.reelChangedListener(consts.REELS_DATA[newReelIndex])
+                    setReel(props.reels[newReelIndex]);
+                    props.reelChangedListener(props.reels[newReelIndex])
                     }}
             />
 
