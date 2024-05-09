@@ -1,2 +1,0 @@
-autocmd VimEnter * NERDTree
-showcmd
