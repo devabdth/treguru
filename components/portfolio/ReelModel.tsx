@@ -1,5 +1,5 @@
 import consts, { ReelProps } from "@/prefs/consts";
-import ReactPlayer from "react-player";
+import ReactPlayer from "react-player/lazy";
 import { useState } from "react";
 import { MainButton } from "../globals";
 import { IReel } from "@/models/reel";
@@ -18,6 +18,7 @@ const ReelModel= (props: ReelModelProps)=> {
     const [currentReelIndex, setCurrentReelIndex]= useState(props.reelIndex)
     const [reel, setReel]= useState<IReel>(props.reels[props.reelIndex]);
     const allReelsCount= props.reels.length;
+    console.log(reel.video)
     return (
         <div className="inset-0 fixed w-screen h-screen bg-black/50 backdrop-blur-xl z-[200] flex flex-row items-center justify-center">
             <MainButton 
@@ -41,11 +42,11 @@ const ReelModel= (props: ReelModelProps)=> {
                 <div className="h-[80%] aspect-[9/16] flex flex-col items-start justify-start overflow-y-auto gap-4 m-auto">
                     <div className="w-full h-full rounded-xl overflow-hidden relative">
                         <div className="video-wrapper w-full h-full absolute top-0">
-                            <ReactPlayer controls={false} url={reel.video} pip={true} 
+                            <ReactPlayer controls={false} url={"/assets/reels/videos/" + reel.video} pip={true} 
                                 onStart={()=> {setShowControllers(true); setIsPlaying(true); setIsMuted(false);}}
                                 playing={isPlaying} loop={true} muted={isMuted}
                                 width='100%' height='100%'
-                                light={<img src={reel.thumbnail} alt={reel.title} className="flex aspect-[9/16] object-center object-cover" />}
+                                light={<img src={"/assets/reels/thumbnails/" + reel.thumbnail} alt={reel.title} className="flex aspect-[9/16] object-center object-cover" />}
                             />
                             <source src={reel.video} type="video/mp4" />
                         </div>
